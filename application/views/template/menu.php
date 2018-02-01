@@ -9,6 +9,7 @@
 		            <li><a href="<?php echo base_url('spp')?>"><i class="fa fa-book text-aqua"></i> Surat Pengiriman (SPP)</a></li>
 		            <li><a href="<?php echo base_url('invoice')?>"><i class="fa fa-book text-aqua"></i> Invoice</a></li>
 		            <li><a href="<?php echo base_url('penawaran')?>"><i class="fa fa-book text-aqua"></i> Data Penawaran</a></li>
+		            <li><a href="<?php echo base_url('input_bbm')?>"><i class="fa fa-book text-aqua"></i> Input BBM</a></li>
 		          </ul>
 			</li>		
 
