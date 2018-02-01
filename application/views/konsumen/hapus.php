@@ -44,7 +44,7 @@ $query = $this->db->query("SELECT *
     </div><!-- /.box-body -->
 
     <div class="box-footer">
-      <input type="submit" class="btn btn-success" name="proses" value="Simpan Data"></input>
+      <input type="submit" class="btn btn-danger" name="proses" value="HAPUS Data"></input>
       <input type="submit" class="btn btn-info" name="batal" value="Batal"></input>
     </div>
   </form>
