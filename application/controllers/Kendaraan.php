@@ -71,8 +71,8 @@ class Kendaraan extends CI_Controller {
       $id = $row->id;
       $nestedData[] = $row->nomorkendaraan;
       $nestedData[] = "<p align='center'>
-      <a href='".base_url('kendaraan/ubah/').$id."'><button class='btn btn-success fa fa-check' title=' Ubah KONSUMEN'></button></a>
-      <a href='".base_url('kendaraan/hapus/').$id."'><button class='btn btn-danger fa fa-trash' title=' Hapus KONSUMEN'></button></a>
+      <a href='".base_url('kendaraan/ubah/').$id."'><button class='btn btn-success fa fa-check' title=' Ubah KENDARAAN'></button></a>
+      <a href='".base_url('kendaraan/hapus/').$id."'><button class='btn btn-danger fa fa-trash' title=' Hapus KENDARAAN'></button></a>
       </p>";      
 
       $data[] = $nestedData;
