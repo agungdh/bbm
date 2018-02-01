@@ -1,4 +1,4 @@
--- Adminer 4.2.5 MySQL dump
+-- Adminer 4.5.0 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -20,7 +20,7 @@ CREATE TABLE `invoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `invoice` (`id`, `nomorinvoice`, `id_spp`, `tanggalinvoice`, `jatuhtempo`, `totaltagihan`, `statusbayar`) VALUES
-(20,	'112233',	14,	'2018-01-31',	'2018-02-05',	40250000.00,	0);
+(20,  '112233', 14, '2018-01-31', '2018-02-05', 40250000.00,  0);
 
 DROP TABLE IF EXISTS `isi_invoice`;
 CREATE TABLE `isi_invoice` (
@@ -41,7 +41,7 @@ CREATE TABLE `isi_invoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `isi_invoice` (`id`, `id_invoice`, `id_spp`, `hargainvoice`, `hargadasar`, `ppn`, `transport`, `pbbkb`, `totalharga`) VALUES
-(17,	20,	14,	6500.00,	8050.00,	3250000.00,	2060000.00,	2440000.00,	40250000.00);
+(17,  20, 14, 6500.00,  8050.00,  3250000.00, 2060000.00, 2440000.00, 40250000.00);
 
 DROP TABLE IF EXISTS `kendaraan`;
 CREATE TABLE `kendaraan` (
@@ -51,21 +51,19 @@ CREATE TABLE `kendaraan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `kendaraan` (`id`, `nomorkendaraan`) VALUES
-(1,	'BE 9432 FG'),
-(2,	'BE 9463 FH');
+(1, 'BE 9432 FG'),
+(2, 'BE 9463 FH');
 
 DROP TABLE IF EXISTS `mutasiproduk`;
 CREATE TABLE `mutasiproduk` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_produk` int(11) DEFAULT NULL,
+  `no_faktur` varchar(50) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
   `id_spp` int(11) DEFAULT NULL,
   `masuk` int(11) DEFAULT '0',
   `keluar` int(11) DEFAULT '0',
-  `stok` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `id_produk` (`id_produk`),
   KEY `id_spp` (`id_spp`),
-  CONSTRAINT `mutasiproduk_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`),
   CONSTRAINT `mutasiproduk_ibfk_2` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,8 +79,8 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `pelanggan` (`id`, `namapelanggan`, `alamatpelanggan`, `kota`, `npwp`) VALUES
-(1,	'PT. ADHITAMA SUKSES MAKMUR',	'Desa Mandah, Kecamatan Natar, Lampung Selatan',	'LAMPUNG SELATAN',	'74.858.026.3-331.000'),
-(2,	'PT. ANUGRAH AGUNG SENTOSA',	'Asphalt Mixing Plant, Tiyuh Cahyou, Kec. Pagar Dewa, Tulang Bawang Barat',	'TULANG BAWANG',	'76.497.593.4-323.000');
+(1, 'PT. ADHITAMA SUKSES MAKMUR', 'Desa Mandah, Kecamatan Natar, Lampung Selatan',  'LAMPUNG SELATAN',  '74.858.026.3-331.000'),
+(2, 'PT. ANUGRAH AGUNG SENTOSA',  'Asphalt Mixing Plant, Tiyuh Cahyou, Kec. Pagar Dewa, Tulang Bawang Barat', 'TULANG BAWANG',  '76.497.593.4-323.000');
 
 DROP TABLE IF EXISTS `penawaran`;
 CREATE TABLE `penawaran` (
@@ -101,19 +99,18 @@ CREATE TABLE `penawaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `penawaran` (`id`, `id_pelanggan`, `alamatkirim`, `ppn`, `pbbkb`, `hargainvoice`, `transport`, `hargadasar`, `masaberlaku`) VALUES
-(5,	1,	'Nunggalrejo',	650.00,	488.00,	6500.00,	412.00,	8050.00,	'2018-02-15');
+(5, 1,  'Nunggalrejo',  650.00, 488.00, 6500.00,  412.00, 8050.00,  '2018-02-15');
 
 DROP TABLE IF EXISTS `produk`;
 CREATE TABLE `produk` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `namaproduk` varchar(50) DEFAULT NULL,
-  `hargaproduk` decimal(15,2) DEFAULT NULL,
   `stok` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `produk` (`id`, `namaproduk`, `hargaproduk`, `stok`) VALUES
-(1,	'SOLAR HSD',	5000.00,	92000.00);
+INSERT INTO `produk` (`id`, `namaproduk`, `stok`) VALUES
+(1, 'SOLAR HSD',  92037.00);
 
 DROP TABLE IF EXISTS `sopir`;
 CREATE TABLE `sopir` (
@@ -124,8 +121,8 @@ CREATE TABLE `sopir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `sopir` (`id`, `namasopir`, `namakenek`) VALUES
-(1,	'NARDI',	'YANTO'),
-(2,	'EKO',	'MISGYANTO');
+(1, 'NARDI',  'YANTO'),
+(2, 'EKO',  'MISGYANTO');
 
 DROP TABLE IF EXISTS `spp`;
 CREATE TABLE `spp` (
@@ -153,8 +150,8 @@ CREATE TABLE `spp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `spp` (`id`, `id_penawaran`, `id_kendaraan`, `id_sopir`, `nomorspp`, `tanggalspp`, `nopo`, `tanggalpo`, `kwantitas`, `segelatas`, `segelbawah`, `beratjenis`, `temperatur`, `status`) VALUES
-(14,	5,	1,	1,	'12345',	'2018-01-31',	'4321',	'2018-01-31',	5000,	'12345',	'12346',	'22',	'32',	1),
-(15,	5,	2,	1,	'5566',	'2018-01-31',	'6655',	'2018-01-31',	8000,	'11, 12',	'13',	'22',	'32',	0);
+(14,  5,  1,  1,  '12345',  '2018-01-31', '4321', '2018-01-31', 5000, '12345',  '12346',  '22', '32', 1),
+(15,  5,  2,  1,  '5566', '2018-01-31', '6655', '2018-01-31', 8000, '11, 12', '13', '22', '32', 0);
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -170,8 +167,8 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`, `avatar`, `telpon`, `email`, `nama`) VALUES
-(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3',	0,	'avatar1.png',	'0811xxxxxxxx',	'admin@minyak.com',	'Administrator'),
-(2,	'kasir',	'c7911af3adbd12a035b289556d96470a',	1,	'avatar2.png',	'0811',	'guest@minyak.com',	'User'),
-(3,	'demo',	'fe01ce2a7fbac8fafaed7c982a04e229',	1,	'avatar2.png',	'0811',	'guest@minyak.com',	'User');
+(1, 'admin',  '21232f297a57a5a743894a0e4a801fc3', 0,  'avatar1.png',  '0811xxxxxxxx', 'admin@minyak.com', 'Administrator'),
+(2, 'kasir',  'c7911af3adbd12a035b289556d96470a', 1,  'avatar2.png',  '0811', 'guest@minyak.com', 'User'),
+(3, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 1,  'avatar2.png',  '0811', 'guest@minyak.com', 'User');
 
--- 2018-01-31 07:28:29
+-- 2018-02-01 11:03:28
