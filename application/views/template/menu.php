@@ -27,7 +27,6 @@
 		          <ul class="treeview-menu">
 		            <li><a href="<?php echo base_url('konsumen')?>"><i class="fa fa-cubes text-aqua"></i> Data Konsumen</a></li>
 		            <li><a href="<?php echo base_url('kendaraan')?>"><i class="fa fa-cubes text-aqua"></i> Data Kendaraan</a></li>
-		            <li><a href="<?php echo base_url('produk')?>"><i class="fa fa-cubes text-aqua"></i> Data Produk</a></li>
 		            <li><a href="<?php echo base_url('sopir')?>"><i class="fa fa-cubes text-aqua"></i> Data Sopir</a></li>
 		          </ul>
 			</li>		
